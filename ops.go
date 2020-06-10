@@ -59,6 +59,27 @@ func List(c *cli.Context) error {
 	return nil
 }
 
+// Change status of a task
+func Change(c *cli.Context) error {
+	td := Todo{ID: s2i.ParseUint(c.Args().Get(0), 0)}
+	prompt := promptui.Select{
+		Label: "Select Status",
+		Items: []string{"active", "doing", "done", "archived"},
+	}
+
+	_, td.Status, err = prompt.Run()
+	if err != nil {
+		fmt.Printf("Prompt failed %v\n", err)
+		return err
+	}
+	err = td.ChangeStatus(td.Status)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("Task #%d changed to %s\n", td.ID, td.Status)
+	return nil
+}
+
 // Doing a task
 func Doing(c *cli.Context) error {
 	td := Todo{ID: s2i.ParseUint(c.Args().Get(0), 0)}

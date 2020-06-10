@@ -30,6 +30,11 @@ func main() {
 				Action:  List,
 			},
 			{
+				Name:   "change",
+				Usage:  "change status of a task with selectable ui prompt",
+				Action: Change,
+			},
+			{
 				Name:   "doing",
 				Usage:  "change status of task to doing",
 				Action: Doing,

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 )
 
@@ -46,8 +47,14 @@ func (t *Todo) ChangeStatus(status string) error {
 }
 
 // Get list of todo items
-func Get() ([]Todo, error) {
-	rows, err := DB.Query("SELECT id, task, status FROM todo")
+func Get(status string) ([]Todo, error) {
+	var rows *sql.Rows
+	var err error
+	if status == "" {
+		rows, err = DB.Query("SELECT id, task, status FROM todo")
+	} else {
+		rows, err = DB.Query("SELECT id, task, status FROM todo where status = ?", status)
+	}
 	if err != nil {
 		log.Println(err)
 	}

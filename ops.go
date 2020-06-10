@@ -41,7 +41,7 @@ func Add(c *cli.Context) error {
 // List of todo items
 func List(c *cli.Context) error {
 	tds := []Todo{}
-	tds, err = Get()
+	tds, err = Get(c.Args().Get(0))
 	if err != nil {
 		return err
 	}

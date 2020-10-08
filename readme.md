@@ -7,7 +7,11 @@ Simple commandline todo list manager
 Install
 -------
 
-todo
+linux :
+
+```
+make && make install
+```
 
 
 How to use

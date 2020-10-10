@@ -7,10 +7,8 @@ Simple commandline todo list manager
 Install
 -------
 
-linux :
-
 ```
-make && make install
+wget -qO- https://raw.githubusercontent.com/dariubs/todo/master/install.sh | bash
 ```
 
 
